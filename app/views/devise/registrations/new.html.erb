@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="body">
+    <% if @user.errors.any? %>
+    <div class="alert alert-warning danger">
+      <h2 class="danger">Sign up error</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <h2>Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+    <div class="form-group has-icon">
+      <p><strong>Name</strong></p>
+      <!-- class ok -->
+      <%= f.text_field :username, autofocus: true, class:"form-control name", id:"inputName"%>
+      <!-- class ok -->
+      <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+    </div>
+    <div class="form-group has-icon">
+      <p><strong>Email</strong></p>
+      <!-- class ok -->
+      <%= f.email_field :email, class:"form-control email", id:"inputEmail"%>
+      <!-- class ok -->
+      <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
+    </div>
+    <div class="form-group has-icon">
+      <p><strong>Password</strong> <i>(6 characters minimum)</i> </p>
+      <!-- class ok -->
+      <%= f.password_field :password, autocomplete: "off", class:"form-control password", id:"inputPassword"%>
+      <!-- class ok -->
+      <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
+    </div>
+    <div class="form-group has-icon">
+      <p><strong>Password confirmation</strong></p>
+      <!-- class ok -->
+      <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control password_confirm", id:"inputConfirmPassword"%>
+      <!-- class ok -->
+      <span class="fa fa-check-circle-o form-control-icon" aria-hidden="true"></span>
+    </div>
+    <!-- class ok -->
+    <%= f.submit "Sign up", class:"btn btn-success submit" %>
+    <!-- class ok -->
+    <%= render "devise/shared/links" %>
+    <% end %>
+  </div>
+</div>
+<%= render "footer", user:@user, book:@book %>
+

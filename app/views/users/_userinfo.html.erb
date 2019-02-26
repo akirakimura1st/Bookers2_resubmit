@@ -1,0 +1,49 @@
+	<% if @book.errors.any? %>
+	<div class="alert alert-warning danger">
+		<h2 class="danger">Create error</h2>
+
+		<ul>
+			<% @book.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+<div class="col-xs-3">
+
+	<h1>User info</h1>
+	<%= attachment_image_tag user, :image, :fill, 100, 100,format: 'jpeg',fallback: "no_image.jpg", class: "userimage" %>
+	<div class="row">
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<td><%= user.username %></td>
+			</tr>
+			<tr>
+				<th>introduction</th>
+				<td><%= user.introduction %></td>
+			</tr>
+		</table>
+		<!-- class ok -->
+		<%= link_to "", edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
+		<!-- class ok -->
+		<%= form_for(book) do |f| %>
+		<% if book.errors.any? %>
+
+		<% end %>
+		<p>Title</p>
+		<!-- class ok -->
+		<%= f.text_field :title, class: "col-xs-12 book_title" %>
+		<!-- class ok -->
+
+		<p>Opinion</p>
+		<!-- class ok -->
+		<%= f.text_area :opinion, class: "col-xs-12 book_body" %>
+		<!-- class ok -->
+
+		<!-- class ok -->
+		<%= f.submit 'Create Book', class: "btn btn-primary col-xs-12 margin submit" %>
+		<!-- class ok -->
+		<% end %>
+	</div>
+</div>

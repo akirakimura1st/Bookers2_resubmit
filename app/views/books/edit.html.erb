@@ -1,0 +1,44 @@
+<div class="body">
+	<% if @book.errors.any? %>
+	<div class="alert alert-warning danger">
+		<h2 class="danger">Edit error</h2>
+
+		<ul>
+			<% @book.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="text_center">
+					<h1>Editing Book</h1>
+					<div class="form-group">
+						<%= form_for(@book) do |f| %>
+						<p>Title</p>
+						<!-- class ok -->
+						<%= f.text_field :title, class: "col-xs-12 book_title" %>
+						<!-- class ok -->
+						<p>Opinion</p>
+
+						<!-- class ok -->
+						<%= f.text_area :opinion, class: "col-xs-12 book_body" %>
+						<!-- class ol -->
+
+						<!-- class ok -->
+						<%= f.submit 'Update Book', class: "col-xs-12 btn btn-primary margin submit" %>
+						<!-- class ok -->
+						<% end %>
+						<!-- class ok -->
+						<%= link_to "Show", book_path, class: "book_#{@book.id}" %> | <%= link_to "Back", books_path, class: "books" %>
+						<!-- class ok -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render "footer", user:@user, book:@book %>

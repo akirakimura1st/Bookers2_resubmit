@@ -1,0 +1,42 @@
+<div class="body">
+	<% if @user.errors.any? %>
+	<div class="alert alert-warning danger">
+		<h2 class="danger">Edit error</h2>
+
+		<ul>
+			<% @user.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-8">
+				<h1>User Info</h1>
+				<%= form_for(@user) do |f| %>
+				<p>Name</p>
+				<!-- class ok -->
+				<%= f.text_field :username, class: "col-xs-8 name" %>
+				<!-- class ok -->
+				<p class="margin marginbottom col-xs-8">Iamge</p>
+
+				<!-- class ok -->
+				<%= f.attachment_field :image, class: "user_image" %>
+				<!-- class ok -->
+				<p></p>
+				<p>Introduction</p>
+				<!-- class ok -->
+				<%= f.text_area :introduction, class: "col-xs-8 introduction" %>
+				<!-- class ok -->
+
+				<!-- class ok -->
+				<%= f.submit 'Update User',class: "btn btn-primary col-xs-8 margin submit" %>
+				<!-- class ok -->
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<%= render "footer", user:@user, book:@book %>
+</div>

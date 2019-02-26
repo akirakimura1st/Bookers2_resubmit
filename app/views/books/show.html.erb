@@ -1,0 +1,51 @@
+<div class="body">
+	<% if flash[:notice] %>
+	<div class="succesflash">
+		<%= flash[:notice] %>
+	</div>
+	<% end %>
+	<div class="container">
+		<div class="row">
+			<%= render "users/userinfo", user:@bookf.user, book:@book %>
+			<h2>Book detail</h2>
+			<div class="col-xs-9">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>
+								<!-- class ol -->
+								<%= link_to user_path(@bookf.user), class: "book_#{@book.id}" do %>
+								<!-- class ok -->
+
+								<%= attachment_image_tag @bookf.user, :image,size: "40x40",format: 'jpeg',fallback: "no_image.jpg", class: "userimage" %> <br>
+								<%= @bookf.user.username %>
+
+								<% end %>
+
+							</td>
+							<td>
+								<%= @bookf.title %>
+							</td>
+							<td>
+								<%= @bookf.opinion %>
+							</td>
+							<% if current_user.id == @bookf.user_id %>
+							<td>
+								<!-- class ok -->
+								<%= link_to "edit", edit_book_path(@bookf), class: "btn btn-success edit_book_#{@book.id}" %>
+								<!-- class ok -->
+							</td>
+							<td>
+								<!-- class ok -->
+								<%= link_to "destroy", book_path(@bookf),method: :delete, class: "btn btn-danger destroy_book_#{@book.id}", data: { confirm: '本当に削除しますか？' } %>
+								<!-- class ok -->
+							</td>
+							<% end %>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render "footer", user:@user, book:@book %>
